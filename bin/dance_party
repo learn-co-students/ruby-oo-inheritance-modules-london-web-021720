@@ -1,0 +1,8 @@
+require_relative "../lib/kid.rb"
+require_relative "../lib/ballerina.rb"
+
+angelina = Kid.new("Anglina")
+mikhail_barishnkov = Ballerina.new("Mikhail")
+
+puts "#{angelina.name} says: #{angelina.twirl}"
+puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
