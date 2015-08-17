@@ -60,7 +60,7 @@ end
 
 Let's do the same for the `Ballerina` class in `lib/ballerina.rb`:
 
-```ruby'
+```ruby
 class Ballerina
 end
 ```
