@@ -8,4 +8,8 @@ describe 'Kid' do
   it 'has a name' do
     expect(kid.name).to eq('Pat')  
   end
+
+  it 'extends the MetaDancing module' do 
+    expect(Kid).to be_a_kind_of(MetaDancing)
+  end
 end
