@@ -14,7 +14,7 @@ This is where modules come it. Modules allow us to collect and bundle a group of
 
 ## Code Along I: Including Module Methods as Instance Methods
 
-***This is a code along exercise. Fork and clone this repo by clicking the github link at the top of the page. There are no tests to pass. Just follow along with the walk-through below to get your code working***.
+***This is a code along exercise. Fork and clone this repo by clicking the Github link at the top of the page. Follow along with the walk-through below to get your code working. Get the tests to pass.***
 
 ### Step I: Defining Our Module
 
@@ -129,7 +129,7 @@ Open up the `lib/class_method_module.rb` and define the following module and met
 module MetaDancing
 
   def metadata
-    "This class produces object that love to dance."
+    "This class produces an object that love to dance."
   end
 end
 ```
@@ -164,6 +164,8 @@ Run the file with `ruby bin/extending` and you should see the following output i
 This class produces objects that love to dance.
 This class produces objects that love to dance.
 ```
+
+Run the tests to make sure all of your tests are passing.
 
 ## Conclusion
 
