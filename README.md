@@ -129,7 +129,7 @@ Open up the `lib/class_method_module.rb` and define the following module and met
 module MetaDancing
 
   def metadata
-    "This class produces an object that love to dance."
+    "This class produces objects that love to dance."
   end
 end
 ```
