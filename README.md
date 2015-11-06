@@ -6,7 +6,7 @@
 
 ## Introduction
 
-In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses a certain class under a super class, the subclass has access to all of the methods of it's parent. Inheriting one class from another makes sense the subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense for the `Car` class to *inherit* from the `Vehicle` class. 
+In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses a certain class under a super class, the subclass has access to all of the methods of its parent. Inheriting one class from another makes sense the subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense to *inherit* the `Car` class from the `Vehicle` class. 
 
 Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill not withstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way. 
 
@@ -14,7 +14,7 @@ This is where modules come it. Modules allow us to collect and bundle a group of
 
 ## Code Along I: Including Module Methods as Instance Methods
 
-***This is a code along exercise. Fork and clone this repo by clicking the github link at the top of the page. There are no tests to pass. Just follow along with the walk-through below to get your code working***.
+***This is a code along exercise. Fork and clone this repo by clicking the Github link at the top of the page. Follow along with the walk-through below to get your code working. Get the tests to pass.***
 
 ### Step I: Defining Our Module
 
@@ -105,7 +105,7 @@ Now that we've included the module, open up `bin/dance_party` and get familiar w
 require_relative "../lib/kid.rb"
 require_relative "../lib/ballerina.rb"
 
-angelina = Kid.new("Anglina")
+angelina = Kid.new("Angelina")
 mikhail_barishnkov = Ballerina.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
@@ -115,7 +115,7 @@ puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
 Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal: 
 
 ```bash
-Anglina says: I'm twirling!
+Angelina says: I'm twirling!
 Mikhail says: Thank you, thank you. It was a pleasure to dance for you all.
 ```
 
@@ -129,7 +129,7 @@ Open up the `lib/class_method_module.rb` and define the following module and met
 module MetaDancing
 
   def metadata
-    "This class produces object that love to dance."
+    "This class produces objects that love to dance."
   end
 end
 ```
@@ -164,6 +164,8 @@ Run the file with `ruby bin/extending` and you should see the following output i
 This class produces objects that love to dance.
 This class produces objects that love to dance.
 ```
+
+Run the tests to make sure all of your tests are passing.
 
 ## Conclusion
 
