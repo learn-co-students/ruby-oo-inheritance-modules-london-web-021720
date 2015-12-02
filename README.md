@@ -170,3 +170,5 @@ Run the tests to make sure all of your tests are passing.
 ## Conclusion
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
+
+<a href='https://learn.co/lessons/modules-reading' data-visibility='hidden'>View this lesson on Learn.co</a>
