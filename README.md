@@ -18,7 +18,7 @@ This is where modules come it. Modules allow us to collect and bundle a group of
 
 ### Step I: Defining Our Module
 
-We'll code our `Dance` module inside the `lib/dance_module.rb` file. Open up that file and define you module with the following code: 
+We'll code our `Dance` module inside the `lib/dance_module.rb` file. Open up that file and define your module with the following code: 
 
 ```ruby
 module Dance
@@ -170,5 +170,3 @@ Run the tests to make sure all of your tests are passing.
 ## Conclusion
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
-
-<a href='https://learn.co/lessons/modules-reading' data-visibility='hidden'>View this lesson on Learn.co</a>
