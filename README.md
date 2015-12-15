@@ -99,7 +99,7 @@ end
 
 If we use `include` keyword, we allow our classes to use all of the methods of the included module as *instance* methods. We'll talk about how to lend a module's methods as *class* methods in a minute. 
 
-Now that we've included the module, open up `bin/dance_party` and get familiar with with following code: 
+Now that we've included the module, open up `bin/dance_party` and get familiar with following code: 
 
 ```ruby
 require_relative "../lib/kid.rb"
@@ -170,3 +170,5 @@ Run the tests to make sure all of your tests are passing.
 ## Conclusion
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
+
+<a href='https://learn.co/lessons/modules-reading' data-visibility='hidden'>View this lesson on Learn.co</a>
