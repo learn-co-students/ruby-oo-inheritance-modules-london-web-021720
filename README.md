@@ -167,6 +167,66 @@ This class produces objects that love to dance.
 
 Run the tests to make sure all of your tests are passing.
 
+## Code Along III: Nested Modules
+
+In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class. 
+
+In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
+
+There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are the instance methods? Nobody knows!
+
+Secondly, we had to build two separate modules that contained methods that were all related to the same functionality (dancing). But because there was no way to designated class methods versus instance methods, we were forced to define two separate modules, which violates the single responsibility principle. Wouldn't it be great if there was a way to define one module and specify which methods were intended as class methods and which methods as instance methods.
+
+Guess what their is!! We're going to refactor the two modules into one, and use nested module namespacing to clarify our code.
+
+```ruby
+module FancyDance
+  module InstanceMethods
+    def twirl
+      "I'm twirling!"
+    end
+    def jump
+      "Look how high I'm jumping!"
+    end
+
+    def pirouette
+      "I'm doing a pirouette"
+    end
+
+    def take_a_bow
+      "Thank you, thank you. It was a pleasure to dance for you all."
+    end
+  end
+
+  module ClassMethods
+
+    def metadata
+      "This class produces objects that love to dance."
+    end
+  end
+end 
+```
+
+First, we define our `FancyDance` module. Then, inside the `FancyDance` module, we define a second module, `InstanceMethods`. Inside the `InstanceMethods` module, we place all our methods that we intend to be used as instance methods (`twirl`, `jump`, `pirouette`, `take_a_bow`). Next, we define a second nested module (nested inside of `FancyDance`) called `ClassMethods`. Inside, we place the `metadata` method, which we intend to be used as a class method.
+
+So how do we use these nested modules?
+
+```ruby
+class Ballerina
+  extend FancyDance::ClassMethods
+  include FancyDance::InstanceMethods
+end
+```
+
+```ruby
+class Kid
+  extend FancyDance::ClassMethods
+  include FancyDance::InstanceMethods
+end
+```
+We refer to the namespaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
+
+
 ## Conclusion
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
