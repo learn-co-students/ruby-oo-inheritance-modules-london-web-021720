@@ -224,10 +224,44 @@ class Kid
   include FancyDance::InstanceMethods
 end
 ```
-We refer to the namespaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
+We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
-## Conclusion
+Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Ballerina` class and the `Kid` class can do.
+
+We can call:
+
+```ruby
+angelina = Ballerina.new
+angelina.twirl
+// returns "I'm twirling!"
+angelina.jump
+// returns "Look how high I'm jumping!"
+
+buster = Kid.new
+buster.jump
+// returns "Look how high I'm jumping!"
+buster.take_a_bow
+// returns "Thank you, thank you. It was a pleasure to dance for you all."
+
+```
+
+Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
+
+And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Ballerina` class and the `Kid` class:
+
+```ruby
+Ballerina.meta_data
+// returns "This class produces objects that love to dance."
+Kid.meta_data
+// returns "This class produces objects that love to dance."
+```
+
+## `::` versus`<`
+
+Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`. 
+
+But what about `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the class or module that is "inheriting" from it.
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
 
