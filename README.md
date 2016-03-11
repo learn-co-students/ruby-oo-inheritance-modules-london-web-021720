@@ -2,15 +2,15 @@
 
 ## Objectives
 
-1. Learn about modules––another way to lend functionality across classes. 
+1. Learn about modules––another way to lend functionality across classes.
 
 ## Introduction
 
-In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses, a certain class under a super class, the subclass has access to all of the methods of its parent. Inheriting one class from another makes sense. The subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense for the `Car` class to *inherit* from the `Vehicle` class. 
+In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses, a certain class under a super class, the subclass has access to all of the methods of its parent. Inheriting one class from another makes sense. The subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense for the `Car` class to *inherit* from the `Vehicle` class.
 
-Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill not withstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way. 
+Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill not withstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way.
 
-This is where modules come it. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class. 
+This is where modules come it. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class.
 
 ## Code Along I: Including Module Methods as Instance Methods
 
@@ -18,12 +18,12 @@ This is where modules come it. Modules allow us to collect and bundle a group of
 
 ### Step I: Defining Our Module
 
-We'll code our `Dance` module inside the `lib/dance_module.rb` file. Open up that file and define your module with the following code: 
+We'll code our `Dance` module inside the `lib/dance_module.rb` file. Open up that file and define your module with the following code:
 
 ```ruby
 module Dance
 end
-``` 
+```
 
 Let's give our `Dance` module some fabulous moves:
 
@@ -44,14 +44,14 @@ module Dance
   def take_a_bow
     "Thank you, thank you. It was a pleasure to dance for you all."
   end
-end 
+end
 ```
 
-Okay, now we'll define our `Kid` class and tell it to *include* the capabilities of the `Dance` module. 
+Okay, now we'll define our `Kid` class and tell it to *include* the capabilities of the `Dance` module.
 
 ### Step 2: Defining the Classes
 
-Open up `lib/kid.rb` and define your `Kid` class: 
+Open up `lib/kid.rb` and define your `Kid` class:
 
 ```ruby
 class Kid
@@ -65,18 +65,18 @@ class Ballerina
 end
 ```
 
-Now we're ready to include our module in our classes: 
+Now we're ready to include our module in our classes:
 
 
 ### Step 3: Including the Module
 
-To lend our two classes all of the methods of the `Dance` module, we use the `include` keyword: 
+To lend our two classes all of the methods of the `Dance` module, we use the `include` keyword:
 
 
 ```ruby
 class Kid
   include Dance
-  
+
   attr_accessor :name
 
   def initialize(name)
@@ -88,7 +88,7 @@ end
 ```ruby
 class Ballerina
   include Dance
-  
+
   attr_accessor :name
 
   def initialize(name)
@@ -97,9 +97,9 @@ class Ballerina
 end
 ```
 
-If we use `include` keyword, we allow our classes to use all of the methods of the included module as *instance* methods. We'll talk about how to lend a module's methods as *class* methods in a minute. 
+If we use `include` keyword, we allow our classes to use all of the methods of the included module as *instance* methods. We'll talk about how to lend a module's methods as *class* methods in a minute.
 
-Now that we've included the module, open up `bin/dance_party` and get familiar with following code: 
+Now that we've included the module, open up `bin/dance_party` and get familiar with following code:
 
 ```ruby
 require_relative "../lib/kid.rb"
@@ -112,7 +112,7 @@ puts "#{angelina.name} says: #{angelina.twirl}"
 puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
 ```
 
-Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal: 
+Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal:
 
 ```bash
 Angelina says: I'm twirling!
@@ -121,7 +121,7 @@ Mikhail says: Thank you, thank you. It was a pleasure to dance for you all.
 
 ## Code Along II: Extending Module Methods as Class Methods
 
-In order to lend a module's methods to a class as *class methods*, we use the `extend` keyword. Let's write yet another module that we can extend into our classes as class methods. For the purposes of this example, let's create a shareable class method, `metadata`, which will report on some pertinent (shared) information regarding both classes.  
+In order to lend a module's methods to a class as *class methods*, we use the `extend` keyword. Let's write yet another module that we can extend into our classes as class methods. For the purposes of this example, let's create a shareable class method, `metadata`, which will report on some pertinent (shared) information regarding both classes.
 
 Open up the `lib/class_method_module.rb` and define the following module and methods:
 
@@ -134,7 +134,7 @@ module MetaDancing
 end
 ```
 
-Let's `extend` this module into both the `Kid` and `Ballerina` classes: 
+Let's `extend` this module into both the `Kid` and `Ballerina` classes:
 
 ```ruby
 class Ballerina
@@ -158,7 +158,7 @@ puts Kid.metadata
 puts Ballerina.metadata
 ```
 
-Run the file with `ruby bin/extending` and you should see the following output in your terminal: 
+Run the file with `ruby bin/extending` and you should see the following output in your terminal:
 
 ```bash
 This class produces objects that love to dance.
@@ -169,7 +169,7 @@ Run the tests to make sure all of your tests are passing.
 
 ## Code Along III: Nested Modules
 
-In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class. 
+In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class.
 
 In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
 
@@ -204,7 +204,7 @@ module FancyDance
       "This class produces objects that love to dance."
     end
   end
-end 
+end
 ```
 
 First, we define our `FancyDance` module. Then, inside the `FancyDance` module, we define a second module, `InstanceMethods`. Inside the `InstanceMethods` module, we place all our methods that we intend to be used as instance methods (`twirl`, `jump`, `pirouette`, `take_a_bow`). Next, we define a second nested module (nested inside of `FancyDance`) called `ClassMethods`. Inside, we place the `metadata` method, which we intend to be used as a class method.
@@ -259,10 +259,16 @@ Kid.meta_data
 
 ## `::` versus`<`
 
-Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`. 
+Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`.
 
 But what about `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the class or module that is "inheriting" from it.
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
+
+## Conclusion
+
+If you have a module whose methods you would like to be used in another class as __instance methods__, then you must __include__ the module.
+
+If you want a module's methods to be used in another class as __class methods__, you must __extend__ the module.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
