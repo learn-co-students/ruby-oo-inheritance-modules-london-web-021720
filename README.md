@@ -265,4 +265,10 @@ But what about `::` that we're using for our modules? The `::` syntax just denot
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
 
+## Conclusion
+
+If you have a module who's methods you would like to be used in another class as __instance methods__ then you must __include__ the module.
+
+If you want a module's methods to be used in another class as __class methods__ you must __extend__ the module.
+
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
