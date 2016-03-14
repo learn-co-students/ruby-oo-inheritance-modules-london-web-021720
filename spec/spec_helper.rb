@@ -2,6 +2,7 @@ require_relative '../lib/ballerina'
 require_relative '../lib/class_methods_module'
 require_relative '../lib/dance_module'
 require_relative '../lib/kid'
+require_relative '../lib/fancy_dance.rb'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
