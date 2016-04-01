@@ -10,7 +10,7 @@ In the previous lesson, we discussed the concept of inheritance. We learned that
 
 Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill not withstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way.
 
-This is where modules come it. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class.
+This is where modules come in. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class.
 
 ## Code Along I: Including Module Methods as Instance Methods
 
@@ -173,7 +173,7 @@ In the first code along, we built a module called `Dance`, which contained metho
 
 In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
 
-There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are the instance methods? Nobody knows!
+There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
 
 Secondly, we had to build two separate modules that contained methods that were all related to the same functionality (dancing). But because there was no way to designate class methods versus instance methods, we were forced to define two separate modules, which violates the single responsibility principle. Wouldn't it be great if there was a way to define one module and specify which methods were intended as class methods and which methods as instance methods.
 
