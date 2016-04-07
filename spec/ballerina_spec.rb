@@ -1,15 +1,15 @@
-describe 'Ballerina' do 
+describe 'Ballerina' do
   let(:ballerina) {Ballerina.new('Anna')}
 
   it 'includes the Dance module' do
-    expect(ballerina).to be_a_kind_of(Dance)
+    expect(ballerina).to have_instance_dance_methods
   end
 
   it 'has a name' do
-    expect(ballerina.name).to eq('Anna')  
+    expect(ballerina.name).to eq('Anna')
   end
 
-  it 'extends the MetaDancing module' do 
-    expect(Ballerina).to be_a_kind_of(MetaDancing)
+  it 'extends the MetaDancing module' do
+    expect(Ballerina).to have_class_dance_methods
   end
 end
