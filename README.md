@@ -232,13 +232,13 @@ Remember, `include` is used to add functionality to our classes designed to be u
 We can call:
 
 ```ruby
-angelina = Ballerina.new
+angelina = Ballerina.new("angelina")
 angelina.twirl
 // returns "I'm twirling!"
 angelina.jump
 // returns "Look how high I'm jumping!"
 
-buster = Kid.new
+buster = Kid.new("buster")
 buster.jump
 // returns "Look how high I'm jumping!"
 buster.take_a_bow
@@ -274,3 +274,5 @@ If you want a module's methods to be used in another class as __class methods__,
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
