@@ -2,6 +2,19 @@ require_relative '../lib/ballerina'
 require_relative '../lib/class_methods_module'
 require_relative '../lib/dance_module'
 require_relative '../lib/kid'
+require_relative '../lib/fancy_dance.rb'
+
+RSpec::Matchers.define :have_instance_dance_methods do
+  match do |actual|
+    (actual.is_a? FancyDance::InstanceMethods) || (actual.is_a? Dance)
+  end
+end
+
+RSpec::Matchers.define :have_class_dance_methods do
+  match do |actual|
+    (actual.is_a? FancyDance::ClassMethods) || (actual.is_a? MetaDancing)
+  end
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
