@@ -171,7 +171,7 @@ Run the tests to make sure all of your tests are passing.
 
 In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class.
 
-In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
+In the second code along, we built the module `MetaDancing`, whose methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
 
@@ -248,12 +248,12 @@ buster.take_a_bow
 
 Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
 
-And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Ballerina` class and the `Kid` class:
+And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `metadata` class method on the `Ballerina` class and the `Kid` class:
 
 ```ruby
-Ballerina.meta_data
+Ballerina.metadata
 // returns "This class produces objects that love to dance."
-Kid.meta_data
+Kid.metadata
 // returns "This class produces objects that love to dance."
 ```
 
