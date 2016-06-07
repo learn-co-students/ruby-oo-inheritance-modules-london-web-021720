@@ -232,13 +232,13 @@ Remember, `include` is used to add functionality to our classes designed to be u
 We can call:
 
 ```ruby
-angelina = Ballerina.new
+angelina = Ballerina.new("angelina")
 angelina.twirl
 // returns "I'm twirling!"
 angelina.jump
 // returns "Look how high I'm jumping!"
 
-buster = Kid.new
+buster = Kid.new("buster")
 buster.jump
 // returns "Look how high I'm jumping!"
 buster.take_a_bow
