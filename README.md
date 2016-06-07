@@ -106,10 +106,10 @@ require_relative "../lib/kid.rb"
 require_relative "../lib/ballerina.rb"
 
 angelina = Kid.new("Angelina")
-mikhail_barishnkov = Ballerina.new("Mikhail")
+mikhail_baryshnikov = Ballerina.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
-puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
+puts "#{mikhail_baryshnikov.name} says: #{mikhail_baryshnikov.take_a_bow}"
 ```
 
 Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal:
