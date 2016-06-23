@@ -8,7 +8,7 @@
 
 In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses, a certain class under a super class, the subclass has access to all of the methods of its parent. Inheriting one class from another makes sense. The subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense for the `Car` class to *inherit* from the `Vehicle` class.
 
-Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill not withstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way.
+Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill notwithstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way.
 
 This is where modules come in. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class.
 
@@ -106,10 +106,10 @@ require_relative "../lib/kid.rb"
 require_relative "../lib/ballerina.rb"
 
 angelina = Kid.new("Angelina")
-mikhail_barishnkov = Ballerina.new("Mikhail")
+mikhail_baryshnikov = Ballerina.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
-puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
+puts "#{mikhail_baryshnikov.name} says: #{mikhail_baryshnikov.take_a_bow}"
 ```
 
 Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal:
@@ -171,13 +171,13 @@ Run the tests to make sure all of your tests are passing.
 
 In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class. 
 
-In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
+In the second code along, we built the module `MetaDancing`, whose methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are the instance methods? Nobody knows!
 
 Secondly, we had to build two separate modules that contained methods that were all related to the same functionality (dancing). But because there was no way to designated class methods versus instance methods, we were forced to define two separate modules, which violates the single responsibility principle. Wouldn't it be great if there was a way to define one module and specify which methods were intended as class methods and which methods as instance methods.
 
-Guess what their is!! We're going to refactor the two modules into one, and use nested module namespacing to clarify our code.
+Guess what?? There is!! We're going to refactor the two modules into one, and use nested module namespacing to clarify our code.
 
 ```ruby
 module FancyDance
@@ -226,58 +226,7 @@ class Kid
   include FancyDance::InstanceMethods
 end
 ```
-<<<<<<< HEAD
 
-We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
-
-Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Ballerina` class and the `Kid` class can do.
-
-We can call:
-
-```ruby
-angelina = Ballerina.new
-angelina.twirl
-// returns "I'm twirling!"
-angelina.jump
-// returns "Look how high I'm jumping!"
-
-buster = Kid.new
-buster.jump
-// returns "Look how high I'm jumping!"
-buster.take_a_bow
-// returns "Thank you, thank you. It was a pleasure to dance for you all."
-
-```
-
-Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
-
-And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Ballerina` class and the `Kid` class:
-
-```ruby
-Ballerina.meta_data
-// returns "This class produces objects that love to dance."
-Kid.meta_data
-// returns "This class produces objects that love to dance."
-```
-
-## `::` versus`<`
-
-Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`.
-
-But what about `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the class or module that is "inheriting" from it.
-
-That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
-
-## Conclusion
-
-If you have a module whose methods you would like to be used in another class as __instance methods__, then you must __include__ the module.
-
-If you want a module's methods to be used in another class as __class methods__, you must __extend__ the module.
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
-=======
 We refer to the namespaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
 
@@ -286,4 +235,4 @@ We refer to the namespaced modules or classes with `::`. This syntax references 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
->>>>>>> e9c586ac48e560a79b41220de535d58bb12c36e4
+
