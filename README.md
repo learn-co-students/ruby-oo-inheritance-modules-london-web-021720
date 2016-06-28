@@ -8,9 +8,9 @@
 
 In the previous lesson, we discussed the concept of inheritance. We learned that through subclasses, a certain class under a super class, the subclass has access to all of the methods of its parent. Inheriting one class from another makes sense. The subclass can be understood as a child or subordinate of the super class. For example, a car is a type of vehicle, so it makes sense for the `Car` class to *inherit* from the `Vehicle` class.
 
-Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Ballerina` class. Ballerinas, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill notwithstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Ballerina` simply need to share some functionality, without being related in any other meaningful way.
+Let's think about a slightly different type of example, one that is less hierarchical. We could easily envision writing an app that models the environment of a dance performance. Such an app might have a `Dancer` class. Dancers, we know, perform dances. Similarly, we could imagine a little girl going to see the Nutcracker ballet one Christmas, coming home and wanting to practice all of the ballet moves from the show. So, we might write a `Kid` class in which an instance of that class, our little girl who has gone to see the ballet, should have access to all those ballet moves (her performance skill notwithstanding). This situation is not hierarchical, like our `Car` and `Vehicle` example. Instead, `Kid` and `Dancer` simply need to share some functionality, without being related in any other meaningful way.
 
-This is where modules come in. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Ballerina` and `Kid` class.
+This is where modules come in. Modules allow us to collect and bundle a group of methods and make those methods available to any number of classes. In this exercise, we'll be defining a `Dance` module and making it available to both the `Dancer` and `Kid` class.
 
 ## Code Along I: Including Module Methods as Instance Methods
 
@@ -58,10 +58,10 @@ class Kid
 end
 ```
 
-Let's do the same for the `Ballerina` class in `lib/ballerina.rb`:
+Let's do the same for the `Dancer` class in `lib/dancer.rb`:
 
 ```ruby
-class Ballerina
+class Dancer
 end
 ```
 
@@ -86,7 +86,7 @@ end
 ```
 
 ```ruby
-class Ballerina
+class Dancer
   include Dance
 
   attr_accessor :name
@@ -103,10 +103,10 @@ Now that we've included the module, open up `bin/dance_party` and get familiar w
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 angelina = Kid.new("Angelina")
-mikhail_baryshnikov = Ballerina.new("Mikhail")
+mikhail_barishnkov = dancer.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
 puts "#{mikhail_baryshnikov.name} says: #{mikhail_baryshnikov.take_a_bow}"
@@ -134,10 +134,10 @@ module MetaDancing
 end
 ```
 
-Let's `extend` this module into both the `Kid` and `Ballerina` classes:
+Let's `extend` this module into both the `Kid` and `Dancer` classes:
 
 ```ruby
-class Ballerina
+class Dancer
   extend MetaDancing
 end
 ```
@@ -152,10 +152,10 @@ Now, open up the bin/extending file and familiarize yourself with the following 
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 puts Kid.metadata
-puts Ballerina.metadata
+puts Dancer.metadata
 ```
 
 Run the file with `ruby bin/extending` and you should see the following output in your terminal:
@@ -169,9 +169,9 @@ Run the tests to make sure all of your tests are passing.
 
 ## Code Along III: Nested Modules
 
-In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class.
+In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Dancer` class.
 
-In the second code along, we built the module `MetaDancing`, whose methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
+In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Dancer` classes.
 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
 
@@ -182,9 +182,11 @@ Guess what?? There is!! We're going to refactor the two modules into one, and us
 ```ruby
 module FancyDance
   module InstanceMethods
+
     def twirl
       "I'm twirling!"
     end
+
     def jump
       "Look how high I'm jumping!"
     end
@@ -205,6 +207,7 @@ module FancyDance
     end
   end
 end
+
 ```
 
 First, we define our `FancyDance` module. Then, inside the `FancyDance` module, we define a second module, `InstanceMethods`. Inside the `InstanceMethods` module, we place all our methods that we intend to be used as instance methods (`twirl`, `jump`, `pirouette`, `take_a_bow`). Next, we define a second nested module (nested inside of `FancyDance`) called `ClassMethods`. Inside, we place the `metadata` method, which we intend to be used as a class method.
@@ -212,7 +215,7 @@ First, we define our `FancyDance` module. Then, inside the `FancyDance` module, 
 So how do we use these nested modules?
 
 ```ruby
-class Ballerina
+class Dancer
   extend FancyDance::ClassMethods
   include FancyDance::InstanceMethods
 end
@@ -227,18 +230,18 @@ end
 
 We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
-Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Ballerina` class and the `Kid` class can do.
+Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` class and the `Kid` class can do.
 
 We can call:
 
 ```ruby
-angelina = Ballerina.new("angelina")
+angelina = Dancer.new
 angelina.twirl
 // returns "I'm twirling!"
 angelina.jump
 // returns "Look how high I'm jumping!"
 
-buster = Kid.new("buster")
+buster = Kid.new
 buster.jump
 // returns "Look how high I'm jumping!"
 buster.take_a_bow
@@ -248,12 +251,12 @@ buster.take_a_bow
 
 Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
 
-And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `metadata` class method on the `Ballerina` class and the `Kid` class:
+And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Dancer` class and the `Kid` class:
 
 ```ruby
-Ballerina.metadata
+Dancer.meta_data
 // returns "This class produces objects that love to dance."
-Kid.metadata
+Kid.meta_data
 // returns "This class produces objects that love to dance."
 ```
 
@@ -271,8 +274,6 @@ If you have a module whose methods you would like to be used in another class as
 
 If you want a module's methods to be used in another class as __class methods__, you must __extend__ the module.
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
 
-<p class='util--hide'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
