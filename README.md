@@ -58,10 +58,10 @@ class Kid
 end
 ```
 
-Let's do the same for the `Ballerina` class in `lib/ballerina.rb`:
+Let's do the same for the `Dancer` class in `lib/dancer.rb`:
 
 ```ruby
-class Ballerina
+class Dancer
 end
 ```
 
@@ -86,7 +86,7 @@ end
 ```
 
 ```ruby
-class Ballerina
+class Dancer
   include Dance
 
   attr_accessor :name
@@ -103,13 +103,13 @@ Now that we've included the module, open up `bin/dance_party` and get familiar w
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 angelina = Kid.new("Angelina")
-mikhail_barishnkov = Ballerina.new("Mikhail")
+mikhail_barishnkov = dancer.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
-puts "#{mikhail_barishnkov.name} says: #{mikhail_barishnkov.take_a_bow}"
+puts "#{mikhail_baryshnikov.name} says: #{mikhail_baryshnikov.take_a_bow}"
 ```
 
 Now, run the file by typing `ruby bin/dance_party` and you should see the following output in your terminal:
@@ -134,10 +134,10 @@ module MetaDancing
 end
 ```
 
-Let's `extend` this module into both the `Kid` and `Ballerina` classes:
+Let's `extend` this module into both the `Kid` and `Dancer` classes:
 
 ```ruby
-class Ballerina
+class Dancer
   extend MetaDancing
 end
 ```
@@ -152,10 +152,10 @@ Now, open up the bin/extending file and familiarize yourself with the following 
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 puts Kid.metadata
-puts Ballerina.metadata
+puts Dancer.metadata
 ```
 
 Run the file with `ruby bin/extending` and you should see the following output in your terminal:
@@ -169,9 +169,9 @@ Run the tests to make sure all of your tests are passing.
 
 ## Code Along III: Nested Modules
 
-In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class.
+In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Dancer` class.
 
-In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
+In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Dancer` classes.
 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
 
@@ -182,9 +182,11 @@ Guess what?? There is!! We're going to refactor the two modules into one, and us
 ```ruby
 module FancyDance
   module InstanceMethods
+
     def twirl
       "I'm twirling!"
     end
+
     def jump
       "Look how high I'm jumping!"
     end
@@ -213,7 +215,7 @@ First, we define our `FancyDance` module. Then, inside the `FancyDance` module, 
 So how do we use these nested modules?
 
 ```ruby
-class Ballerina
+class Dancer
   extend FancyDance::ClassMethods
   include FancyDance::InstanceMethods
 end
@@ -228,12 +230,12 @@ end
 
 We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
-Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Ballerina` class and the `Kid` class can do.
+Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` class and the `Kid` class can do.
 
 We can call:
 
 ```ruby
-angelina = Ballerina.new
+angelina = Dancer.new
 angelina.twirl
 // returns "I'm twirling!"
 angelina.jump
@@ -249,10 +251,10 @@ buster.take_a_bow
 
 Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
 
-And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Ballerina` class and the `Kid` class:
+And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Dancer` class and the `Kid` class:
 
 ```ruby
-Ballerina.meta_data
+Dancer.meta_data
 // returns "This class produces objects that love to dance."
 Kid.meta_data
 // returns "This class produces objects that love to dance."
