@@ -228,6 +228,8 @@ class Kid
 end
 ```
 
+*Note: remember to require the `fancy_dance.rb` file inside the `dancer.rb` and `kid.rb`, just like we did with our other file requirements.*
+
 We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
 Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` class and the `Kid` class can do.
