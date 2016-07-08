@@ -106,7 +106,7 @@ require_relative "../lib/kid.rb"
 require_relative "../lib/dancer.rb"
 
 angelina = Kid.new("Angelina")
-mikhail_barishnkov = dancer.new("Mikhail")
+mikhail_barishnkov = Dancer.new("Mikhail")
 
 puts "#{angelina.name} says: #{angelina.twirl}"
 puts "#{mikhail_baryshnikov.name} says: #{mikhail_baryshnikov.take_a_bow}"
@@ -279,3 +279,5 @@ If you want a module's methods to be used in another class as __class methods__,
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
 
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
