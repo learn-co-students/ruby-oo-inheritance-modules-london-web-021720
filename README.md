@@ -232,7 +232,7 @@ end
 
 We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
-Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` class and the `Kid` class can do.
+Remember, `include` is used to add functionality to our classes via instance methods. The `InstanceMethods` module inside the `FancyDancy` module contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` or `Kid` class can do.
 
 We can call:
 
@@ -251,22 +251,22 @@ buster.take_a_bow
 
 ```
 
-Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
+Because we _included_ the `FancyDance::InstanceMethods` nested module, we can call those instance methods on instances of our classes.
 
-And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Dancer` class and the `Kid` class:
+And `extend` is used to add additional functionality to our classes via class methods. We can now call the `metadata` class method on the `Dancer` and `Kid` classes:
 
 ```ruby
-Dancer.meta_data
+Dancer.metadata
 // returns "This class produces objects that love to dance."
-Kid.meta_data
+Kid.metadata
 // returns "This class produces objects that love to dance."
 ```
 
 ## `::` versus`<`
 
-Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`.
+Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from a `Car` class because a BMW is a type of car: `class BMW < Car`.
 
-But what about `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the class or module that is "inheriting" from it.
+But what about the `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the inheriting class or module.
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
 
