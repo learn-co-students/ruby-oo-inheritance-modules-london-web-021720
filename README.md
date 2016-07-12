@@ -58,10 +58,10 @@ class Kid
 end
 ```
 
-Let's do the same for the `Ballerina` class in `lib/ballerina.rb`:
+Let's do the same for the `Dancer` class in `lib/dancer.rb`:
 
 ```ruby
-class Ballerina
+class Dancer
 end
 ```
 
@@ -86,7 +86,7 @@ end
 ```
 
 ```ruby
-class Ballerina
+class Dancer
   include Dance
 
   attr_accessor :name
@@ -103,7 +103,7 @@ Now that we've included the module, open up `bin/dance_party` and get familiar w
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 angelina = Kid.new("Angelina")
 mikhail_baryshnikov = Ballerina.new("Mikhail")
@@ -134,10 +134,10 @@ module MetaDancing
 end
 ```
 
-Let's `extend` this module into both the `Kid` and `Ballerina` classes:
+Let's `extend` this module into both the `Kid` and `Dancer` classes:
 
 ```ruby
-class Ballerina
+class Dancer
   extend MetaDancing
 end
 ```
@@ -152,10 +152,10 @@ Now, open up the bin/extending file and familiarize yourself with the following 
 
 ```ruby
 require_relative "../lib/kid.rb"
-require_relative "../lib/ballerina.rb"
+require_relative "../lib/dancer.rb"
 
 puts Kid.metadata
-puts Ballerina.metadata
+puts Dancer.metadata
 ```
 
 Run the file with `ruby bin/extending` and you should see the following output in your terminal:
@@ -169,6 +169,7 @@ Run the tests to make sure all of your tests are passing.
 
 ## Code Along III: Nested Modules
 
+<<<<<<< HEAD
 In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Ballerina` class. 
 
 In the second code along, we built the module `MetaDancing`, whose methods were intended to be used as class methods in the `Kid` and `Ballerina` classes.
@@ -176,15 +177,26 @@ In the second code along, we built the module `MetaDancing`, whose methods were 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are the instance methods? Nobody knows!
 
 Secondly, we had to build two separate modules that contained methods that were all related to the same functionality (dancing). But because there was no way to designated class methods versus instance methods, we were forced to define two separate modules, which violates the single responsibility principle. Wouldn't it be great if there was a way to define one module and specify which methods were intended as class methods and which methods as instance methods.
+=======
+In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Dancer` class.
+
+In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Dancer` classes.
+
+There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
+
+Secondly, we had to build two separate modules that contained methods that were all related to the same functionality (dancing). But because there was no way to designate class methods versus instance methods, we were forced to define two separate modules, which violates the single responsibility principle. Wouldn't it be great if there was a way to define one module and specify which methods were intended as class methods and which methods as instance methods.
+>>>>>>> 35d25e4af936a036583cae9c1a6d0eb9ba5bbcb2
 
 Guess what?? There is!! We're going to refactor the two modules into one, and use nested module namespacing to clarify our code.
 
 ```ruby
 module FancyDance
   module InstanceMethods
+
     def twirl
       "I'm twirling!"
     end
+
     def jump
       "Look how high I'm jumping!"
     end
@@ -204,7 +216,6 @@ module FancyDance
       "This class produces objects that love to dance."
     end
   end
-
 end
 
 ```
@@ -214,7 +225,7 @@ First, we define our `FancyDance` module. Then, inside the `FancyDance` module, 
 So how do we use these nested modules?
 
 ```ruby
-class Ballerina
+class Dancer
   extend FancyDance::ClassMethods
   include FancyDance::InstanceMethods
 end
@@ -227,12 +238,53 @@ class Kid
 end
 ```
 
-We refer to the namespaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
+We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
+Remember, `include` is used to add functionality to our classes designed to be used as instance methods. The `InstanceMethods` module inside the `FancyDancy` module, contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` class and the `Kid` class can do.
 
-## Conclusion
+We can call:
+
+```ruby
+angelina = Dancer.new
+angelina.twirl
+// returns "I'm twirling!"
+angelina.jump
+// returns "Look how high I'm jumping!"
+
+buster = Kid.new
+buster.jump
+// returns "Look how high I'm jumping!"
+buster.take_a_bow
+// returns "Thank you, thank you. It was a pleasure to dance for you all."
+
+```
+
+Because we _included_ the `FancyDance::InstanceMethods` nested modules, we can call those instance methods on instances of our classes.
+
+And `extend` is used to add additional functionality to our classes by way of class method. We can now call the `meta-data` class method on the `Dancer` class and the `Kid` class:
+
+```ruby
+Dancer.meta_data
+// returns "This class produces objects that love to dance."
+Kid.meta_data
+// returns "This class produces objects that love to dance."
+```
+
+## `::` versus`<`
+
+Inheritance using the `<` syntax, implies that a class is a type of something. A `BMW` class should inherit from `Car` class, because a BMW is a type of car. `class BMW < Car`.
+
+But what about `::` that we're using for our modules? The `::` syntax just denotes a name-space. Doing `BMW::Car` just gives the `BMW` class access to all constants, instance methods, etc, without stating that a BMW is a type of car. The `::` syntax carries all public items over to the class or module that is "inheriting" from it.
 
 That's it! Now that we are familiar with several methods of sharing code between classes, you're ready to move on to the next few labs.
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Modules and Mixins in Ruby'>Modules and Mixins in Ruby</a> on Learn.co and start learning to code for free.</p>
+## Conclusion
+
+If you have a module whose methods you would like to be used in another class as __instance methods__, then you must __include__ the module.
+
+If you want a module's methods to be used in another class as __class methods__, you must __extend__ the module.
+
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
+
 
