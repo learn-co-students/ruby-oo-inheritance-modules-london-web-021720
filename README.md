@@ -171,7 +171,7 @@ Run the tests to make sure all of your tests are passing.
 
 In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Dancer` class.
 
-In the second code along, we built the module `MetaDancing`, who's methods were intended to be used as class methods in the `Kid` and `Dancer` classes.
+In the second code along, we built the module `MetaDancing`, whose methods were intended to be used as class methods in the `Kid` and `Dancer` classes.
 
 There are two drawbacks to this approach. First, if another developer looks at your modules, there is absolutely no way to determine how those methods are intended to be used. Are they class methods? Are they instance methods? Nobody knows!
 
@@ -277,3 +277,5 @@ If you have a module whose methods you would like to be used in another class as
 If you want a module's methods to be used in another class as __class methods__, you must __extend__ the module.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/modules-reading' title='Intro to Modules'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/modules-reading'>Intro to Modules</a> on Learn.co and start learning to code for free.</p>
