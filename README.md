@@ -123,7 +123,7 @@ Mikhail says: Thank you, thank you. It was a pleasure to dance for you all.
 
 In order to lend a module's methods to a class as *class methods*, we use the `extend` keyword. Let's write yet another module that we can extend into our classes as class methods. For the purposes of this example, let's create a shareable class method, `metadata`, which will report on some pertinent (shared) information regarding both classes.
 
-Open up the `lib/class_method_module.rb` and define the following module and methods:
+Open up the `lib/class_methods_module.rb` and define the following module and methods:
 
 ```ruby
 module MetaDancing
