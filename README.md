@@ -253,7 +253,7 @@ buster.take_a_bow
 
 Because we _included_ the `FancyDance::InstanceMethods` nested module, we can call those instance methods on instances of our classes.
 
-And `extend` is used to add additional functionality to our classes via class methods. We can now call the `metadata` class method on the `Dancer` and `Kid` classes:
+And `extend` is used to add functionality to our classes via class methods. We can now call the `metadata` class method on the `Dancer` and `Kid` classes:
 
 ```ruby
 Dancer.metadata
