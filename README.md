@@ -232,7 +232,7 @@ end
 
 We refer to the name-spaced modules or classes with `::`. This syntax references the parent and child relationship of the nested modules.
 
-Remember, `include` is used to add functionality to our classes via instance methods. The `InstanceMethods` module inside the `FancyDancy` module contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` or `Kid` class can do.
+Remember, `include` is used to add functionality to our classes via instance methods. The `InstanceMethods` module inside the `FancyDance` module contains the methods `twirl`, `jump`, `pirouette`, and `take_a_bow`, which any instance of the `Dancer` or `Kid` class can do.
 
 We can call:
 
