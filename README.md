@@ -165,7 +165,7 @@ This class produces objects that love to dance.
 This class produces objects that love to dance.
 ```
 
-Run the tests to make sure all of your tests are passing.
+Run the tests to make sure some of your tests are passing.
 
 ## Code Along III: Nested Modules
 
