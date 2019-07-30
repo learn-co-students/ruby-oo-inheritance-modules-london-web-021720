@@ -167,6 +167,8 @@ This class produces objects that love to dance.
 
 Run the tests to make sure some of your tests are passing.
 
+**Note:** Run the learn command to pass all the local tests for this lab. We will be altering the methods where these tests will no longer be valid.
+
 ## Code Along III: Nested Modules
 
 In the first code along, we built a module called `Dance`, which contained methods that we intended to be used as instances methods in the `Dancer` class.
